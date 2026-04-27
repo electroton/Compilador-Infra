@@ -1,11 +1,12 @@
 program Tabuada12;
 
+// Exemplo de ciclo for aninhado: calcula produtos da tabuada de 1 a 18
 procedure main()
      declare soma : integer:= 0;
      declare j : integer;
 
-     for( declare i : integer := 1; i < 19; ++i )
-         for(j := 19; j >= 1; j--)
+     for( declare i : integer := 1; i <= 18; ++i )
+         for(j := 18; j >= 1; j--)
              soma := i * j;
          endfor
      endfor
