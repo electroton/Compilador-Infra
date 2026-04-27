@@ -99,21 +99,23 @@ STRING      \"([^\\\"]|\\.)*\"
                 }
 
 /* Comments - single line */
-"//".*          { /* ignore single-line comments */ }
+"/"/.*          { /* ignore single-line comments */ }
 
 /* Comments - multi-line */
-"/*"([^*]|\*+[^*/])*\*+"/"  { 
-                    /* count newlines inside block comments */
-                    char *p;
-                    for (p = yytext; *p; p++)
-                        if (*p == '\n') line_number++;
+/* Note: track newlines inside block comments so line_number stays accurate */
+"/*"([^*]|\*+[^*/])*\*+"/"  {
+                    int i;
+                    for (i = 0; yytext[i] != '\0'; i++)
+                        if (yytext[i] == '\n') line_number++;
                 }
 
-/* Whitespace */
+/* Track line numbers */
 "\n"            { line_number++; }
+
+/* Ignore whitespace */
 [ \t\r]+        { /* ignore whitespace */ }
 
-/* Unknown character */
+/* Unknown character - report error with line number */
 .               {
                     fprintf(stderr, "Erro lexico: caractere desconhecido '%s' na linha %d\n",
                             yytext, line_number);
