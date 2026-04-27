@@ -14,5 +14,16 @@ Os seus termos reservados escritos em língua inglesa e são case-insensitive, o
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flex (Fast Lexical Analyzer Generator )  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GNU GCC (GNU Compiler Collection)  
 
+### Como compilar
+
+```bash
+make
+```
+
+Para limpar os arquivos gerados:
+
+```bash
+make clean
+```
 
 Contribua!
